@@ -1,6 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/productModel')
+require('dotenv').config();
+
 const app  = express()
 
 // middleware
@@ -101,7 +103,7 @@ app.delete('/products/:id', async(req, res) => {
 
 // Database Connection
 mongoose.
-connect('mongodb+srv://Sairam:123admin@cluster0.mkvmm.mongodb.net/Node-API')
+connect(process.env.MONGO_URI)
 .then(()=> {
     console.log('connected to Mongodb')
     app.listen(4000, ()=> {
